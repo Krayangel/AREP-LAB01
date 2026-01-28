@@ -30,3 +30,5 @@ This repository contains two Jupyter notebooks implementing validation of linear
 5.  ![alt text](image-3.png)
 6.  ![alt text](image-4.png)
 7.  ![alt text](image-5.png)
+
+8.  I didn't see remarkable differences between local execution vs SageMaker execution.
