@@ -24,8 +24,9 @@ This repository contains two Jupyter notebooks implementing validation of linear
 ## SageMaker
 
 1.  To import the notebooks in sagemaker you just have to create a folder in the code editor and inside drag the notebooks
-2.  ![alt text](image-1.png)
-3.  ![alt text](image-2.png)
-4.  ![alt text](image-3.png)
-5.  ![alt text](image-4.png)
-6.  ![alt text](image-5.png)
+2.  Images Sagemaker
+3.  ![alt text](image-1.png)
+4.  ![alt text](image-2.png)
+5.  ![alt text](image-3.png)
+6.  ![alt text](image-4.png)
+7.  ![alt text](image-5.png)
