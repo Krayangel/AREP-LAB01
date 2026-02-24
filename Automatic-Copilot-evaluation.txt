@@ -1,0 +1,215 @@
+===========================================================
+  AUTOMATIC COPILOT EVALUATION – AREP-LAB01
+  TA-Style Grading Report
+  Topic: Stellar Luminosity – Linear & Polynomial Regression
+===========================================================
+
+-----------------------------------------------------------
+SUMMARY
+-----------------------------------------------------------
+The repository is well-organized and technically sound. Both
+notebooks cover the required material for linear regression
+(Part I) and polynomial regression (Part II) using only the
+allowed libraries (NumPy, Matplotlib). All datasets are defined
+inline. The implementations are clean, vectorized where required,
+and mathematically correct. The key gap in Notebook 1 is an
+incomplete cost surface visualization (the contour subplot is set
+up in code but never populated), and the convergence plot is
+missing its legend() call. Notebook 2 is nearly complete but
+lacks written discussion of the M1/M2/M3 comparison and offers
+only minimal interpretation of the inference result. SageMaker
+evidence is provided with five screenshots but the local vs cloud
+comparison is superficial. Overall the submission demonstrates
+solid understanding of gradient descent and polynomial feature
+engineering from first principles.
+
+-----------------------------------------------------------
+GRADING BREAKDOWN (0.0 – 5.0 scale)
+-----------------------------------------------------------
+
+1. Repository structure & compliance ............. 0.50 / 0.50
+   - README.md present: YES
+   - Two notebooks present: YES
+   - Datasets defined inside notebooks: YES (both notebooks)
+   - Only allowed libraries (NumPy, Matplotlib): YES
+   - No deductions.
+
+2. Notebook 1 – Linear regression ............... 1.65 / 2.00
+   Deductions:
+   - Cost surface [MANDATORY]: The figure is configured for two
+     subplots (1, 2, 1) but only the 3D surface (ax1) is
+     populated; the contour subplot (ax2) is entirely absent.
+     The section also lacks a markdown explanation of what the
+     surface shape implies about the optimization landscape.
+     (-0.20)
+   - Convergence plot: Code is present and learning-rate
+     experiments are correctly run (3 rates: 0.001, 0.01, 0.1),
+     but plt.legend() is never called despite labels being set,
+     so the legend would not render. Discussion text is generic.
+     (-0.10)
+   - Final fit and discussion: Present and adequate. No deduction.
+   - All other criteria (dataset visualization, MSE cost function,
+     gradient derivation in both loop and vectorized form, gradient
+     descent implementation, conceptual Q&A): FULLY MET.
+
+3. Notebook 2 – Polynomial regression ........... 1.85 / 2.00
+   Deductions:
+   - M1/M2/M3 comparison [MANDATORY]: The comparison runs
+     correctly and convergence curves are plotted on a log scale,
+     but there is no markdown cell interpreting which model
+     performed best, the quantitative loss differences, or why
+     the additional features help. (-0.10)
+   - Inference example [MANDATORY]: Present and correctly
+     implemented for M=1.3, T=6600. However, the result is only
+     printed numerically with no written interpretation of the
+     predicted value in an astrophysical context. (-0.05)
+   - All other criteria (temperature-encoded scatter plot, feature
+     engineering with [M, T, M², M·T], vectorized loss/gradients,
+     training + convergence plot, interaction cost analysis w_MT
+     sweep, z-score normalization): FULLY MET.
+
+4. Cloud execution evidence (SageMaker) .......... 0.40 / 0.50
+   - Notebooks shown in SageMaker: YES (screenshots present)
+   - Successful execution visible: YES
+   - At least one plot screenshot: YES (multiple plots visible)
+   - Local vs cloud comparison: Present but superficial –
+     "I didn't see remarkable differences" with no elaboration
+     on latency, environment setup, or resource differences.
+     (-0.10)
+
+-----------------------------------------------------------
+FINAL GRADE
+-----------------------------------------------------------
+
+  Repository structure & compliance:  0.50 / 0.50
+  Notebook 1 – Linear regression:     1.65 / 2.00
+  Notebook 2 – Polynomial regression: 1.85 / 2.00
+  Cloud execution evidence:           0.40 / 0.50
+  ─────────────────────────────────────────────────
+  Final grade: 4.4 / 5.0
+
+  Status: PASS (≥ 3.0)
+
+-----------------------------------------------------------
+STRENGTHS
+-----------------------------------------------------------
+- Clean, correct Python from first principles with no ML libraries.
+- Both loop-based and fully vectorized gradient descent are
+  implemented in Notebook 1.
+- Correct MSE cost function and analytically correct gradient
+  formulas with corresponding markdown derivations.
+- Notebook 2 features well-structured build_features() with modes
+  M1/M2/M3 and z-score normalization (sigma[sigma==0]=1 guard).
+- Vectorized multivariate loss and gradients using matrix
+  operations (np.dot(X.T, err)) are implemented correctly.
+- Interaction term cost analysis (w_MT sweep) is fully
+  implemented with a clear visualization.
+- Inference example is correctly executed using trained M3 weights
+  and the same normalization parameters.
+- Datasets are self-contained inside both notebooks.
+- SageMaker evidence is present with five screenshots covering
+  the notebook interface, execution, and output plots.
+
+-----------------------------------------------------------
+ISSUES & MISSING ELEMENTS
+-----------------------------------------------------------
+- [NB1 – MANDATORY] Cost surface contour plot: The figure code
+  allocates a second subplot (1, 2, 2) but it is never created
+  or populated. Only the 3D surface is rendered.
+- [NB1 – MANDATORY] Cost surface lacks an explanation of what the
+  bowl shape implies (convexity, single global minimum, etc.).
+- [NB1] Convergence plot: plt.legend() is not called, so the
+  learning-rate labels would not appear on the rendered plot.
+- [NB1] Convergence discussion is generic ("Small alpha: Converges
+  slowly") without quantitative observations from the actual run.
+- [NB2] No markdown discussion comparing M1/M2/M3 final losses or
+  explaining which model to prefer and why.
+- [NB2] Inference output is printed but not interpreted
+  (e.g., "this value is reasonable because...").
+- [README] Local vs SageMaker comparison is a single sentence with
+  no technical detail.
+
+-----------------------------------------------------------
+TA FEEDBACK TO STUDENT
+-----------------------------------------------------------
+Your implementation demonstrates a solid grasp of gradient descent
+and polynomial feature engineering from first principles. The code
+is correct, clean, and adheres to the library constraints.
+
+The most important fix needed is in Notebook 1: complete the cost
+surface visualization by adding the contour subplot (ax2) and
+include a short paragraph explaining what the shape of the surface
+tells you about optimization (convexity, learning rate sensitivity,
+etc.). Also add plt.legend() to your convergence plot so the
+learning-rate labels are visible.
+
+In Notebook 2, add a brief markdown discussion after the M1/M2/M3
+comparison explaining which model achieved the lowest loss, why
+the polynomial and interaction features help, and whether the
+improvement is significant. Similarly, comment on your inference
+result – is a predicted luminosity of that value physically
+plausible for a star of that mass and temperature?
+
+Finally, for the SageMaker section, provide a few more sentences
+on how the cloud environment differs from local execution (e.g.,
+instance type used, setup steps, cold-start time, managed kernel
+environment) even if the numerical results are identical.
+
+Overall this is a strong submission. Addressing the contour plot
+and adding more written discussion would bring it close to full
+marks.
+
+-----------------------------------------------------------
+AI-GENERATION ASSESSMENT (NON-GRADING – OBSERVATIONAL ONLY)
+-----------------------------------------------------------
+
+A. Qualitative Assessment
+
+   Indicators suggesting AI assistance:
+   - Uniform, textbook-style markdown explanations throughout
+     both notebooks with consistent heading hierarchy and
+     bullet-point style.
+   - Generic phrasing in conceptual sections (e.g., "Small alpha:
+     Converges slowly. Good alpha: Converges steadily.") that
+     lacks personalized reasoning or data-driven observation.
+   - All function names, variable names, and docstrings follow a
+     clean, tutorial-like convention with no idiosyncratic choices.
+   - Abrupt transitions between code cells and explanations
+     without intermediate "thinking out loud" commentary that
+     often appears in student-written notebooks.
+   - README structure is standard and mirrors typical
+     auto-generated project templates.
+
+   Indicators of human involvement:
+   - The specific dataset values (M, T, L arrays) and the
+     pedagogical framing around stellar astrophysics appear
+     purposefully chosen.
+   - The sigma[sigma==0]=1 guard in z_score_normalize() is a
+     practical defensive detail that suggests hands-on experience.
+   - The missing contour subplot and missing plt.legend() are
+     realistic omissions consistent with human editing/review
+     rather than a fully polished AI output.
+
+B. Quantitative Estimate
+
+   Code:              ~65% AI-assisted
+   Explanations/markdown: ~75% AI-assisted
+   README:            ~60% AI-assisted
+
+C. Commentary
+
+   The notebooks exhibit the clean structure, uniform style, and
+   generic explanations that are characteristic of AI-assisted
+   authorship, while the specific astrophysical dataset, a few
+   defensive coding choices, and the presence of minor
+   implementation gaps suggest meaningful human involvement in
+   designing and reviewing the work. The incomplete contour plot
+   and missing legend call are the kinds of oversights that arise
+   when a human edits or adapts AI-generated code without fully
+   testing each cell in sequence.
+
+   This assessment is observational and does not imply misconduct.
+
+===========================================================
+  END OF EVALUATION
+===========================================================
